@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<math.h> 
+#include<windows.h>
 #define M 100
 //定义一个存储学生相关信息的结构体
 typedef struct
