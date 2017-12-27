@@ -329,7 +329,7 @@ void Query_S_number(Student S)
 //查询函数以寝室号为关键字进行查询(折半查找)
 void Query_D_number(Student S)
 {
-    int i,j,m,n,base,top,mid;
+    int i,j,base,top,mid;
     j=0;
     base=1;
     top=S->Total;
@@ -346,25 +346,7 @@ void Query_D_number(Student S)
             mid=(base+top)/2;
             if(i==S[mid].D_number)
             {
-                m=mid;
-                n=mid-1;
-                while(S[m].D_number==i)
-                {
-                    printf("%-19s%-12s %-14s%-13d%ld\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
-                    m++;
-                    if(m>S->Total)
-                        break;
-                }
-                if(n>0)
-                {
-                    while(S[n].D_number==i)
-                    {
-                        printf("%-15s%-15s%-15ld\n",S[n].S_name,S[n].S_number,S[n].D_number);
-                        n--;
-                        if(n<1)
-                            break;
-                    }
-                }
+				printf("%-19s%-12s %-14s%-13d%ld\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
                 j=1;
                 putchar('\n');
                 break;
