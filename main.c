@@ -23,7 +23,7 @@ void S_number_Judge(Student S,int t)
             printf("请输入学生的学号(15个字符以内):");
             scanf("%s",S[t].S_number);
             getchar();
-			i=0;
+			i=0;//i 置为0 判断从头开始
         }
 }
 //添加学生信息函数
