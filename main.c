@@ -1,19 +1,9 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<math.h> 
-#include<windows.h>
-#define M 100
-//定义一个存储学生相关信息的结构体
-typedef struct
-{
-    char S_name[31];   //学生姓名
-    char S_class[31];  //学生班级
-    char S_number[16]; //学生学号
-    int D_number;      //学生所在寝室的宿舍号
-    long S_phone[20];  //学生电话号码
-    int Total;         //学生总数
-}Student[M],St;
+#include"stdio.h"
+#include"string.h"
+#include"stdlib.h"
+#include"math.h" 
+#include"windows.h"
+#include"preset.h"
 //判断学号是否与表中所存学号重复
 void S_number_Judge(Student S,int t)
 {
