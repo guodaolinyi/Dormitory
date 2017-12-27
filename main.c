@@ -11,7 +11,7 @@ typedef struct
     char S_class[31];  //学生班级
     char S_number[16]; //学生学号
     int D_number;      //学生所在寝室的宿舍号
-    char S_phone[20];  //学生电话号码
+    long S_phone[20];  //学生电话号码
     int Total;         //学生总数
 }Student[M],St;
 //判断学号是否与表中所存学号重复
@@ -45,7 +45,7 @@ void Add(Student S)
     scanf("%d",&S[S->Total].D_number);
     getchar();
     printf("请输入学生电话号码:");
-    scanf("%s",&S[S->Total]. S_phone);
+    scanf("%ld",&S[S->Total]. S_phone);
     getchar();
     printf("添加成功!\n\n");
 }
@@ -66,21 +66,21 @@ void Alter(Student S)
     else
     {
         printf("新信息如下:\n");
-        printf("请输入学生姓名(30个字符以内):");
-        scanf("%s",S[flag].S_name);
-        getchar();
+        //printf("请输入学生姓名(30个字符以内):");
+        //scanf("%s",S[flag].S_name);
+        //getchar();
         printf("请输入学生班级(30个字符以内):");
         scanf("%s",S[flag].S_class);
         getchar();
-        printf("请输入学生的学号(15个字符以内):");
-        scanf("%s",S[flag].S_number);
-        getchar();
+        //printf("请输入学生的学号(15个字符以内):");
+        //scanf("%s",S[flag].S_number);
+        //getchar();
         S_number_Judge(S,flag);
         printf("请输入宿舍号:");
         scanf("%d",&S[flag].D_number);
         getchar();
         printf("请输入学生电话号码:");
-        scanf("%s",&S[flag]. S_phone);
+        scanf("%ld",&S[flag]. S_phone);
         getchar();
         printf("修改成功!\n");
     }
@@ -294,7 +294,7 @@ void Query_D_number(Student S)
                 n=mid-1;
                 while(S[m].D_number==i)
                 {
-                    printf("%-19s%-12s %-14s%-13d%s\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
+                    printf("%-19s%-12s %-14s%-13d%ld\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
                     m++;
                     if(m>S->Total)
                         break;
@@ -303,7 +303,7 @@ void Query_D_number(Student S)
                 {
                     while(S[n].D_number==i)
                     {
-                        printf("%-15s%-15s%-15d\n",S[n].S_name,S[n].S_number,S[n].D_number);
+                        printf("%-15s%-15s%-15ld\n",S[n].S_name,S[n].S_number,S[n].D_number);
                         n--;
                         if(n<1)
                             break;
