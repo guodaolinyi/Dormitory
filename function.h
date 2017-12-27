@@ -3,8 +3,7 @@
 
 void Add(Student S);//添加学生信息函数
 void Alter(Student S);//修改学生信息函数
-void Alter_Sub_Menu(Student S, int flag);
-
+void Alter_Sub_Menu(Student S, int flag);//修改信息子菜单
 void Delete(Student S);//删除学生信息
 void Display_All(Student S);//显示所有学生信息函数
 void loading(char *p);//加载动画
