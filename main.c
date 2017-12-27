@@ -25,7 +25,7 @@ void S_number_Judge(Student S,int t)
             printf("请输入学生的学号(15个字符以内):");
             scanf("%s",S[t].S_number);
             getchar();
-			i=0;//i 置为0 判断从头开始
+            i=0;//i 置为0 判断从头开始
         }
 }
 //添加学生信息函数
@@ -144,7 +144,6 @@ void Sort_D_number(Student S)
                 S[i].D_number=S[j].D_number;
                 strcpy(S[j].S_name,name);
                 strcpy(S[j].S_number,number);
-
                 strcpy(S[j].S_class,Cnumber);
                 S[j].D_number=t;
             }
@@ -250,7 +249,7 @@ void Query_S_number(Student S)
     Sort_S_number(S);  //将表中原数据按照学号从小到大排序
     printf("所查找学生信息如下:\n");
     printf("学生姓名       学生班级       学生学号       宿舍号       学生电话号码\n");
-    if(strcmp(number,S[1].S_number)>=0&&strcmp(number,S[S->Total].S_number)>=0)
+    if(strcmp(number,S[1].S_number)>=0&&strcmp(number,S[S->Total].S_number)<=0)
     {
         while(base<=top)
         {
