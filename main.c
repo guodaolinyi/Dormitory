@@ -4,6 +4,72 @@
 #include"math.h" 
 #include"windows.h"
 #include"preset.h"
+#include"function.h"
+//菜单
+void Menu()
+{
+    //菜单
+    printf("                                 宿舍管理系统\n\n");
+    printf("*************************************菜单***************************************\n");
+    printf(" 1.添加学生信息                       |   6.以宿舍号查询该寝室中的全部学生信息\n");
+    printf(" 2.修改学生信息                       |   7.以班级号查询该班级中的全部学生信息\n");
+    printf(" 3.删除学生信息                       |   8.显示所有学生的相关信息\n");
+    printf(" 4.以姓名查询学生信息                 |   9.退出程序\n");
+    printf(" 5.以学号查询学生信息                 |  \n");
+    printf("********************************************************************************\n");
+}
+//加载动画
+void loading(char *p)              //延时函数的定义  
+{  
+    while (1)  
+    {  
+    if (*p!=0)  
+    printf("%c",*p++);  
+    else  
+    break;  
+    Sleep(100);               //延时控制间断语句  
+    }  
+}  
+int main(void)
+{
+    int i,sum;
+    Student S;
+    S->Total=0;
+    system("color 03");      //调节控制台的背景和字体颜色   
+    sum=0;  
+    loading("\t\t\1\1\1\1\1\1\1\1\1\1\1\1\1欢迎使用宿舍管理系统\1\1\1\1\1\1\1\1\1\1\1\1\1\n\n\n");  
+    do
+    {
+        Menu();
+        printf("请选择所要实现的功能(请输入1~10中的任意一个数字):");
+        scanf("%d",&i);
+        getchar();  //获取换行符
+        putchar('\n');
+        switch(i)
+        {
+            case 1:Add(S);
+                break;
+            case 2:Alter(S);
+                break;
+            case 3:Delete(S);
+                break;
+            case 4:Query_S_name(S);
+                break;
+            case 5:Query_S_number(S);
+                break;
+            case 6:Query_D_number(S);
+                break;
+            case 7: Query_S_class (S);
+                break;
+            case 8:Display_All(S);
+                break;
+            case 9:exit(0);
+            default:printf("选择错误:请在选项到之间选择!\n\n");
+                break;
+        }
+    }while(i!=14);
+    return 0;
+}
 //判断学号是否与表中所存学号重复
 void S_number_Judge(Student S,int t)
 {
@@ -311,71 +377,6 @@ void Query_D_number(Student S)
     }
     if(!j)
         printf("\n查找失败,表中不存在该寝室的信息!\n\n");
-}
-//菜单
-void Menu()
-{
-    //菜单
-    printf("                                 宿舍管理系统\n\n");
-    printf("*************************************菜单***************************************\n");
-    printf(" 1.添加学生信息                       |   6.以宿舍号查询该寝室中的全部学生信息\n");
-    printf(" 2.修改学生信息                       |   7.以班级号查询该班级中的全部学生信息\n");
-    printf(" 3.删除学生信息                       |   8.显示所有学生的相关信息\n");
-    printf(" 4.以姓名查询学生信息                 |   9.退出程序\n");
-    printf(" 5.以学号查询学生信息                 |  \n");
-    printf("********************************************************************************\n");
-}
-//加载动画
-void loading(char *p)              //延时函数的定义  
-{  
-    while (1)  
-    {  
-    if (*p!=0)  
-    printf("%c",*p++);  
-    else  
-    break;  
-    Sleep(100);               //延时控制间断语句  
-    }  
-}  
-int main(void)
-{
-    int i,sum;
-    Student S;
-    S->Total=0;
-    system("color 03");      //调节控制台的背景和字体颜色   
-    sum=0;  
-    loading("\t\t\1\1\1\1\1\1\1\1\1\1\1\1\1欢迎使用宿舍管理系统\1\1\1\1\1\1\1\1\1\1\1\1\1\n\n\n");  
-    do
-    {
-        Menu();
-        printf("请选择所要实现的功能(请输入1~10中的任意一个数字):");
-        scanf("%d",&i);
-        getchar();  //获取换行符
-        putchar('\n');
-        switch(i)
-        {
-            case 1:Add(S);
-                break;
-            case 2:Alter(S);
-                break;
-            case 3:Delete(S);
-                break;
-            case 4:Query_S_name(S);
-                break;
-            case 5:Query_S_number(S);
-                break;
-            case 6:Query_D_number(S);
-                break;
-            case 7: Query_S_class (S);
-                break;
-            case 8:Display_All(S);
-                break;
-            case 9:exit(0);
-            default:printf("选择错误:请在选项到之间选择!\n\n");
-                break;
-        }
-    }while(i!=14);
-    return 0;
 }
 //学号3位： 19、12、14、13
 //学号12位；19、8、18、13
