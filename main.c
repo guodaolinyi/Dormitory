@@ -1,9 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-
 #define M 100
-
 //定义一个存储学生相关信息的结构体
 typedef struct
 {
@@ -14,7 +12,6 @@ typedef struct
     char S_phone[20];  //学生电话号码
     int Total;         //学生总数
 }Student[M],St;
-
 //判断学号是否与表中所存学号重复
 void S_number_Judge(Student S,int t)
 {
@@ -26,6 +23,7 @@ void S_number_Judge(Student S,int t)
             printf("请输入学生的学号(15个字符以内):");
             scanf("%s",S[t].S_number);
             getchar();
+			i=0;
         }
 }
 //添加学生信息函数
@@ -47,10 +45,8 @@ void Add(Student S)
     printf("请输入学生电话号码:");
     scanf("%s",&S[S->Total]. S_phone);
     getchar();
-    //dirty=1;
     printf("添加成功!\n\n");
 }
-
 //修改学生信息函数
 void Alter(Student S)
 {
@@ -74,7 +70,6 @@ void Alter(Student S)
         printf("请输入学生班级(30个字符以内):");
         scanf("%s",S[flag].S_class);
         getchar();
-
         printf("请输入学生的学号(15个字符以内):");
         scanf("%s",S[flag].S_number);
         getchar();
@@ -85,12 +80,10 @@ void Alter(Student S)
         printf("请输入学生电话号码:");
         scanf("%s",&S[flag]. S_phone);
         getchar();
-        //dirty=1;
         printf("修改成功!\n");
     }
     putchar('\n');
 }
-
 //删除学生信息
 void Delete(Student S)
 {
@@ -115,7 +108,6 @@ void Delete(Student S)
             S[i].D_number=S[j].D_number;
         }
         (S->Total)--;
-        //dirty=1;
         printf("删除成功!");
     }
     printf("\n\n");
@@ -128,16 +120,14 @@ void Display_All(Student S)
     printf("学生姓名       学生班级       学生学号       宿舍号       学生电话号码\n");
     for(i=1;i<=S->Total;i++)
         printf("%-19s%-12s %-14s%-13d%s\n",S[i].S_name,S[i].S_class,S[i].S_number,S[i].D_number,S[i].S_phone);
-
 }
-
 //排序函数按照寝室号从小到大排序(冒泡法)
 void Sort_D_number(Student S)
 {
     int i,j,t;
     char name[30];
     char number[15];
-    char Cnumber[30];//
+    char Cnumber[30];//Cnumber 班别
     for(i=1;i<=S->Total;i++)
         for(j=i;j<=S->Total;j++)
             if(S[i].D_number>S[j].D_number)
@@ -152,11 +142,11 @@ void Sort_D_number(Student S)
                 S[i].D_number=S[j].D_number;
                 strcpy(S[j].S_name,name);
                 strcpy(S[j].S_number,number);
+
                 strcpy(S[j].S_class,Cnumber);
                 S[j].D_number=t;
             }
 }
-
 //排序函数按照学号从小到大排序(冒泡法)
 void Sort_S_number(Student S)
 {
@@ -182,7 +172,6 @@ void Sort_S_number(Student S)
                 S[j].D_number=t;
             }
 }
-
 //排序函数按照班级号从小到大排序(冒泡法)
 void Sort_S_class (Student S)
 {
@@ -208,7 +197,6 @@ void Sort_S_class (Student S)
                 S[j]. D_number =t;
             }
 }
-
 //查询函数以班级为关键字进行查询(顺序查找)
 void Query_S_class(Student S)
 {
@@ -228,8 +216,6 @@ void Query_S_class(Student S)
     if(!j)
         printf("\n查找失败,表中不存在该学生的信息!\n\n");
 }
-
-
 //查询函数以姓名为关键字进行查询(顺序查找)
 void Query_S_name(Student S)
 {
@@ -249,7 +235,6 @@ void Query_S_name(Student S)
     if(!j)
         printf("\n查找失败,表中不存在该学生的信息!\n\n");
 }
-
 //查询函数以学号为关键字进行查询(折半查找)
 void Query_S_number(Student S)
 {
@@ -260,7 +245,6 @@ void Query_S_number(Student S)
     top=S->Total;
     printf("请输入你要查找学生的学号:");
     scanf("%s",number);
-
     Sort_S_number(S);  //将表中原数据按照学号从小到大排序
     printf("所查找学生信息如下:\n");
     printf("学生姓名       学生班级       学生学号       宿舍号       学生电话号码\n");
@@ -285,7 +269,6 @@ void Query_S_number(Student S)
     if(!j)
         printf("\n查找失败,表中不存在该学生的信息!\n\n");
 }
-
 //查询函数以寝室号为关键字进行查询(折半查找)
 void Query_D_number(Student S)
 {
@@ -338,7 +321,6 @@ void Query_D_number(Student S)
     if(!j)
         printf("\n查找失败,表中不存在该寝室的信息!\n\n");
 }
-
 //菜单
 void Menu()
 {
@@ -351,9 +333,7 @@ void Menu()
     printf(" 4.以姓名查询学生信息                 |   9.退出程序\n");
     printf(" 5.以学号查询学生信息                 |  \n");
     printf("********************************************************************************\n");
-
 }
-
 int main(void)
 {
     int i;
@@ -384,13 +364,6 @@ int main(void)
                 break;
             case 8:Display_All(S);
                 break;
-                /*
-            case 9:Save(S);
-                break;
-            case 10:Judge_Save(dirty,S);
-                 */
-                //exit(0);
-                //break;
             case 9:exit(0);
             default:printf("选择错误:请在选项到之间选择!\n\n");
                 break;
@@ -398,7 +371,5 @@ int main(void)
     }while(i!=14);
     return 0;
 }
-
-
 //学号3位： 19、12、14、13
 //学号12位；19、8、18、13
