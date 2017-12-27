@@ -1,15 +1,17 @@
 #ifndef _function_H_
 #define _function_H_
-void S_number_Judge(Student S,int t);//ÅĞ¶ÏÑ§ºÅÊÇ·ñÓë±íÖĞËù´æÑ§ºÅÖØ¸´
-void Add(Student S);//Ìí¼ÓÑ§ÉúĞÅÏ¢º¯Êı
-void Alter(Student S);//ĞŞ¸ÄÑ§ÉúĞÅÏ¢º¯Êı
-void Delete(Student S);//É¾³ıÑ§ÉúĞÅÏ¢
-void Display_All(Student S);//ÏÔÊ¾ËùÓĞÑ§ÉúĞÅÏ¢º¯Êı
-void Sort_D_number(Student S);//ÅÅĞòº¯Êı°´ÕÕÇŞÊÒºÅ´ÓĞ¡µ½´óÅÅĞò(Ã°Åİ·¨)
-void Sort_S_number(Student S);//ÅÅĞòº¯Êı°´ÕÕÑ§ºÅ´ÓĞ¡µ½´óÅÅĞò(Ã°Åİ·¨)
-void Sort_S_class (Student S);//ÅÅĞòº¯Êı°´ÕÕ°à¼¶ºÅ´ÓĞ¡µ½´óÅÅĞò(Ã°Åİ·¨)
-void Query_S_class(Student S);//²éÑ¯º¯ÊıÒÔ°à¼¶Îª¹Ø¼ü×Ö½øĞĞ²éÑ¯(Ë³Ğò²éÕÒ)
-void Query_S_name(Student S);//²éÑ¯º¯ÊıÒÔĞÕÃûÎª¹Ø¼ü×Ö½øĞĞ²éÑ¯(Ë³Ğò²éÕÒ)
-void Query_S_number(Student S);//²éÑ¯º¯ÊıÒÔÑ§ºÅÎª¹Ø¼ü×Ö½øĞĞ²éÑ¯(ÕÛ°ë²éÕÒ)
-void Query_D_number(Student S);//²éÑ¯º¯ÊıÒÔÇŞÊÒºÅÎª¹Ø¼ü×Ö½øĞĞ²éÑ¯(ÕÛ°ë²éÕÒ)
+void Add(Student S);//æ·»åŠ å­¦ç”Ÿä¿¡æ¯å‡½æ•°
+void Alter(Student S);//ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯å‡½æ•°
+void Delete(Student S);//åˆ é™¤å­¦ç”Ÿä¿¡æ¯
+void Display_All(Student S);//æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯å‡½æ•°
+void loading(char *p);//åŠ è½½åŠ¨ç”»
+void Menu();//èœå•
+void S_number_Judge(Student S,int t);//åˆ¤æ–­å­¦å·æ˜¯å¦ä¸è¡¨ä¸­æ‰€å­˜å­¦å·é‡å¤
+void Sort_D_number(Student S);//æ’åºå‡½æ•°æŒ‰ç…§å¯å®¤å·ä»å°åˆ°å¤§æ’åº(å†’æ³¡æ³•)
+void Sort_S_number(Student S);//æ’åºå‡½æ•°æŒ‰ç…§å­¦å·ä»å°åˆ°å¤§æ’åº(å†’æ³¡æ³•)
+void Sort_S_class (Student S);//æ’åºå‡½æ•°æŒ‰ç…§ç­çº§å·ä»å°åˆ°å¤§æ’åº(å†’æ³¡æ³•)
+void Query_S_class(Student S);//æŸ¥è¯¢å‡½æ•°ä»¥ç­çº§ä¸ºå…³é”®å­—è¿›è¡ŒæŸ¥è¯¢(é¡ºåºæŸ¥æ‰¾)
+void Query_S_name(Student S);//æŸ¥è¯¢å‡½æ•°ä»¥å§“åä¸ºå…³é”®å­—è¿›è¡ŒæŸ¥è¯¢(é¡ºåºæŸ¥æ‰¾)
+void Query_S_number(Student S);//æŸ¥è¯¢å‡½æ•°ä»¥å­¦å·ä¸ºå…³é”®å­—è¿›è¡ŒæŸ¥è¯¢(æŠ˜åŠæŸ¥æ‰¾)
+void Query_D_number(Student S);//æŸ¥è¯¢å‡½æ•°ä»¥å¯å®¤å·ä¸ºå…³é”®å­—è¿›è¡ŒæŸ¥è¯¢(æŠ˜åŠæŸ¥æ‰¾)
 #endif

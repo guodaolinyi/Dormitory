@@ -1,14 +1,14 @@
 #ifndef _preset_H_
 #define _preset_H_
 #define M 100
-//¶¨ÒåÒ»¸ö´æ´¢Ñ§ÉúÏà¹ØĞÅÏ¢µÄ½á¹¹Ìå
+//å®šä¹‰ä¸€ä¸ªå­˜å‚¨å­¦ç”Ÿç›¸å…³ä¿¡æ¯çš„ç»“æ„ä½“
 typedef struct
 {
-    char S_name[31];   //Ñ§ÉúĞÕÃû
-    char S_class[31];  //Ñ§Éú°à¼¶
-    char S_number[16]; //Ñ§ÉúÑ§ºÅ
-    int D_number;      //Ñ§ÉúËùÔÚÇŞÊÒµÄËŞÉáºÅ
-    long S_phone[20];  //Ñ§Éúµç»°ºÅÂë
-    int Total;         //Ñ§Éú×ÜÊı
+    char S_name[31];   //å­¦ç”Ÿå§“å
+    char S_class[31];  //å­¦ç”Ÿç­çº§
+    char S_number[16]; //å­¦ç”Ÿå­¦å·
+    int D_number;      //å­¦ç”Ÿæ‰€åœ¨å¯å®¤çš„å®¿èˆå·
+    long S_phone[20];  //å­¦ç”Ÿç”µè¯å·ç 
+    int Total;         //å­¦ç”Ÿæ€»æ•°
 }Student[M],St;
 #endif

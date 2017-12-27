@@ -1,36 +1,22 @@
 #include"stdio.h"
 #include"string.h"
 #include"stdlib.h"
-#include"math.h" 
 #include"windows.h"
 #include"preset.h"
 #include"function.h"
-#include"add.c"
-#include"alter.c"
-#include"delete.c"
-#include"display_all.c"
-#include"menu.c"
-#include"plug.c"
-#include"query_d_number.c"
-#include"query_s_class.c"
-#include"query_s_name.c"
-#include"query_s_number.c"
-#include"sort_d_number.c"
-#include"sort_s_class.c"
-#include"sort_s_number.c"
+
 int main(void){
-    int i,sum;
+    int i;
     Student S;
     S->Total=0;
-    system("color 03");      //è°ƒèŠ‚æ§åˆ¶å°çš„èƒŒæ™¯å’Œå­—ä½“é¢œè‰²   
-    sum=0;  
-    loading("\t\t\1\1\1\1\1\1\1\1\1\1\1\1\1æ¬¢è¿ä½¿ç”¨å®¿èˆç®¡ç†ç³»ç»Ÿ\1\1\1\1\1\1\1\1\1\1\1\1\1\n\n\n");  
+    system("color 03");      //µ÷½Ú¿ØÖÆÌ¨µÄ±³¾°ºÍ×ÖÌåÑÕÉ«
+    loading("\t\t\1\1\1\1\1\1\1\1\1\1\1\1\1»¶Ó­Ê¹ÓÃËŞÉá¹ÜÀíÏµÍ³\1\1\1\1\1\1\1\1\1\1\1\1\1\n\n\n");
     do
     {
         Menu();
-        printf("è¯·é€‰æ‹©æ‰€è¦å®ç°çš„åŠŸèƒ½(è¯·è¾“å…¥1~10ä¸­çš„ä»»æ„ä¸€ä¸ªæ•°å­—):");
+        printf("ÇëÑ¡ÔñËùÒªÊµÏÖµÄ¹¦ÄÜ(ÇëÊäÈë1~9µÄÈÎÒâÒ»¸öÊı×Ö):");
         scanf("%d",&i);
-        getchar();  //è·å–æ¢è¡Œç¬¦
+        getchar();  //»ñÈ¡»»ĞĞ·û
         putchar('\n');
         switch(i)
         {
@@ -51,25 +37,320 @@ int main(void){
             case 8:Display_All(S);
                 break;
             case 9:exit(0);
-            default:printf("é€‰æ‹©é”™è¯¯:è¯·åœ¨é€‰é¡¹åˆ°ä¹‹é—´é€‰æ‹©!\n\n");
+            default:printf("Ñ¡Ôñ´íÎó:ÇëÔÚÑ¡Ïîµ½Ö®¼äÑ¡Ôñ!\n\n");
                 break;
         }
-    }while(i!=14);
+    }while(i!=9);
     return 0;
 }
-//åˆ¤æ–­å­¦å·æ˜¯å¦ä¸è¡¨ä¸­æ‰€å­˜å­¦å·é‡å¤
+//²Ëµ¥
+void Menu()
+{
+    //²Ëµ¥
+    printf("                                 ËŞÉá¹ÜÀíÏµÍ³\n\n");
+    printf("*************************************²Ëµ¥***************************************\n");
+    printf(" 1.Ìí¼ÓÑ§ÉúĞÅÏ¢                       |   6.ÒÔËŞÉáºÅ²éÑ¯¸ÃÇŞÊÒÖĞµÄÈ«²¿Ñ§ÉúĞÅÏ¢\n");
+    printf(" 2.ĞŞ¸ÄÑ§ÉúĞÅÏ¢                       |   7.ÒÔ°à¼¶ºÅ²éÑ¯¸Ã°à¼¶ÖĞµÄÈ«²¿Ñ§ÉúĞÅÏ¢\n");
+    printf(" 3.É¾³ıÑ§ÉúĞÅÏ¢                       |   8.ÏÔÊ¾ËùÓĞÑ§ÉúµÄÏà¹ØĞÅÏ¢\n");
+    printf(" 4.ÒÔĞÕÃû²éÑ¯Ñ§ÉúĞÅÏ¢                 |   9.ÍË³ö³ÌĞò\n");
+    printf(" 5.ÒÔÑ§ºÅ²éÑ¯Ñ§ÉúĞÅÏ¢                 |  \n");
+    printf("********************************************************************************\n");
+}
+//Ìí¼ÓÑ§ÉúĞÅÏ¢º¯Êı
+void Add(Student S)
+{
+    printf("ÇëÊäÈëÑ§ÉúĞÕÃû(30¸ö×Ö·ûÒÔÄÚ):");
+    scanf("%s",&S[++(S->Total)].S_name);
+    getchar();//»ñÈ¡»»ĞĞ·û
+    printf("ÇëÊäÈëÑ§Éú°à¼¶(30¸ö×Ö·ûÒÔÄÚ):");
+    scanf("%s",&S[S->Total].S_class);
+    getchar();
+    printf("ÇëÊäÈëÑ§ÉúµÄÑ§ºÅ(15¸ö×Ö·ûÒÔÄÚ):");
+    scanf("%s",&S[S->Total].S_number);
+    getchar();
+    S_number_Judge(S,S->Total);//ÅĞ¶ÏÊäÈëµÄÑ§ºÅÊÇ·ñÓë±íÖĞËù´æÔÚµÄÑ§ºÅÖØ¸´
+    printf("ÇëÊäÈëËŞÉáºÅÂë:");
+    scanf("%d",&S[S->Total].D_number);
+    getchar();
+    printf("ÇëÊäÈëÑ§Éúµç»°ºÅÂë:");
+    scanf("%ld",&S[S->Total]. S_phone);
+    getchar();
+    printf("Ìí¼Ó³É¹¦!\n\n");
+}
+//ĞŞ¸ÄÑ§ÉúĞÅÏ¢º¯Êı
+void Alter(Student S)
+{
+    int i;
+    int flag=0; //ÓÃÀ´ÅĞ¶Ï±íÖĞÊÇ·ñ´æÔÚËùÒªĞŞ¸ÄµÄÑ§ÉúµÄĞÅÏ¢
+    char name[20];
+    printf("ÇëÊäÈëÄãÒªĞŞ¸ÄÑ§ÉúµÄĞÕÃû:");
+    scanf("%s",name);
+    getchar();
+    for(i=1;i<=S->Total;i++)
+        if(strcmp(S[i].S_name,name)==0)
+            flag=i;
+    if(!flag)
+        printf("ÄãËùÒªĞŞ¸ÄµÄÑ§ÉúĞÅÏ¢ÔÚ±íÖĞ²»´æÔÚ£¡\n");
+    else
+    {
+        printf("ĞÂĞÅÏ¢ÈçÏÂ:\n");
+        printf("ÇëÊäÈëÑ§Éú°à¼¶(30¸ö×Ö·ûÒÔÄÚ):");
+        scanf("%s",S[flag].S_class);
+        getchar();
+        S_number_Judge(S,flag);
+        printf("ÇëÊäÈëËŞÉáºÅ:");
+        scanf("%d",&S[flag].D_number);
+        getchar();
+        printf("ÇëÊäÈëÑ§Éúµç»°ºÅÂë:");
+        scanf("%ld",&S[flag]. S_phone);
+        getchar();
+        printf("ĞŞ¸Ä³É¹¦!\n");
+    }
+    putchar('\n');
+}
+//É¾³ıÑ§ÉúĞÅÏ¢
+void Delete(Student S)
+{
+    int i,j;
+    int flag=0;  //ÓÃÀ´ÅĞ¶Ï±íÖĞÊÇ·ñ´æÔÚËùÒªÉ¾³ıµÄÑ§ÉúµÄĞÅÏ¢
+    char name[20];
+    printf("ÇëÊäÈëÄãÒªÉ¾³ıÑ§ÉúµÄĞÕÃû:");
+    scanf("%s",name);
+    getchar();
+    for(i=1;i<=S->Total;i++)
+        if(strcmp(S[i].S_name,name)==0)
+            flag=i;
+    if(!flag)
+        printf("ÄãËùÒªÉ¾³ıµÄÑ§ÉúÔÚ±íÖĞ²»´æÔÚ£¡");
+    else
+    {
+        for(i=flag;i<S->Total;i++)
+        {
+            j=i+1;
+            strcpy(S[i].S_name,S[j].S_name);
+            strcpy(S[i].S_number,S[j].S_number);
+            S[i].D_number=S[j].D_number;
+        }
+        (S->Total)--;
+        printf("É¾³ı³É¹¦!");
+    }
+    printf("\n\n");
+}
+//ÏÔÊ¾ËùÓĞÑ§ÉúĞÅÏ¢º¯Êı
+void Display_All(Student S)
+{
+    int i;
+    printf("È«ÌåÑ§ÉúĞÅÏ¢ÈçÏÂ:\n");
+    printf("Ñ§ÉúĞÕÃû       Ñ§Éú°à¼¶       Ñ§ÉúÑ§ºÅ       ËŞÉáºÅ       Ñ§Éúµç»°ºÅÂë\n");
+    for(i=1;i<=S->Total;i++)
+        printf("%-19s%-12s %-14s%-13d%s\n",S[i].S_name,S[i].S_class,S[i].S_number,S[i].D_number,S[i].S_phone);
+}
+//¼ÓÔØ¶¯»­
+void loading(char *p)              //ÑÓÊ±º¯ÊıµÄ¶¨Òå
+{
+    while (1)
+    {
+        if (*p!=0)
+            printf("%c",*p++);
+        else
+            break;
+        Sleep(100);               //ÑÓÊ±¿ØÖÆ¼ä¶ÏÓï¾ä
+    }
+}
+//²éÑ¯º¯ÊıÒÔÇŞÊÒºÅÎª¹Ø¼ü×Ö½øĞĞ²éÑ¯(ÕÛ°ë²éÕÒ)
+void Query_D_number(Student S)
+{
+    int i,j,base,top,mid;
+    j=0;
+    base=1;
+    top=S->Total;
+    printf("ÇëÊäÈëÄãÒª²éÑ¯µÄÇŞÊÒºÅ:");
+    scanf("%d",&i);
+    getchar();
+    Sort_D_number(S);//½«±íÖĞÔ­Êı¾İ°´ÕÕÇŞÊÒºÅ´ÓĞ¡µ½´óÅÅĞò
+    printf("Ëù²éÕÒÇŞÊÒĞÅÏ¢ÈçÏÂ:\n");
+    printf("Ñ§ÉúĞÕÃû       Ñ§Éú°à¼¶       Ñ§ÉúÑ§ºÅ       ËŞÉáºÅ       Ñ§Éúµç»°ºÅÂë\n");
+    if(i>=S[1].D_number&&i<=S[S->Total].D_number)
+    {
+        while(base<=top)
+        {
+            mid=(base+top)/2;
+            if(i==S[mid].D_number)
+            {
+                printf("%-19s%-12s %-14s%-13d%ld\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
+                j=1;
+                putchar('\n');
+                break;
+            }
+            else if(i>S[mid].D_number)
+                base=mid+1;
+            else
+                top=mid-1;
+        }
+    }
+    if(!j)
+        printf("\n²éÕÒÊ§°Ü,±íÖĞ²»´æÔÚ¸ÃÇŞÊÒµÄĞÅÏ¢!\n\n");
+}
+//²éÑ¯º¯ÊıÒÔ°à¼¶Îª¹Ø¼ü×Ö½øĞĞ²éÑ¯(Ë³Ğò²éÕÒ)
+void Query_S_class(Student S)
+{
+    int i,j=0;
+    char classnumber[31];
+    printf("ÇëÊäÈëÄãÒª²éÕÒµÄ°à¼¶ºÅ(30¸ö×Ö·ûÒÔÄÚ):");
+    scanf("%s",classnumber);
+    getchar();
+    printf("Ëù²éÕÒÑ§ÉúĞÅÏ¢ÈçÏÂ:\n");
+    printf("Ñ§ÉúĞÕÃû       Ñ§Éú°à¼¶       Ñ§ÉúÑ§ºÅ       ËŞÉáºÅ       Ñ§Éúµç»°ºÅÂë\n");
+    for(i=1;i<=S->Total;i++)
+        if(strcmp(classnumber,S[i].S_class)==0)
+        {
+            printf("%-19s%-12s %-14s%-13d%s\n",S[i].S_name, S[i].S_class,S[i].S_number,S[i].D_number,S[i].S_phone);
+            j=1;
+        }
+    if(!j)
+        printf("\n²éÕÒÊ§°Ü,±íÖĞ²»´æÔÚ¸ÃÑ§ÉúµÄĞÅÏ¢!\n\n");
+}
+//²éÑ¯º¯ÊıÒÔĞÕÃûÎª¹Ø¼ü×Ö½øĞĞ²éÑ¯(Ë³Ğò²éÕÒ)
+void Query_S_name(Student S)
+{
+    int i,j=0;
+    char name[31];
+    printf("ÇëÊäÈëÄãÒª²éÕÒµÄÑ§ÉúµÄĞÕÃû(30¸ö×Ö·ûÒÔÄÚ):");
+    scanf("%s",name);
+    getchar();
+    printf("Ëù²éÕÒÑ§ÉúĞÅÏ¢ÈçÏÂ:\n");
+    printf("Ñ§ÉúĞÕÃû       Ñ§Éú°à¼¶       Ñ§ÉúÑ§ºÅ       ËŞÉáºÅ       Ñ§Éúµç»°ºÅÂë\n");
+    for(i=1;i<=S->Total;i++)
+        if(strcmp(name,S[i].S_name)==0)
+        {
+            printf("%-19s%-12s %-14s%-13d%s\n",S[i].S_name, S[i].S_class,S[i].S_number,S[i].D_number,S[i].S_phone);
+            j=1;
+        }
+    if(!j)
+        printf("\n²éÕÒÊ§°Ü,±íÖĞ²»´æÔÚ¸ÃÑ§ÉúµÄĞÅÏ¢!\n\n");
+}
+//²éÑ¯º¯ÊıÒÔÑ§ºÅÎª¹Ø¼ü×Ö½øĞĞ²éÑ¯(ÕÛ°ë²éÕÒ)
+void Query_S_number(Student S)
+{
+    int j,top,base,mid;
+    char number[15];
+    j=0;
+    base=1;
+    top=S->Total;
+    printf("ÇëÊäÈëÄãÒª²éÕÒÑ§ÉúµÄÑ§ºÅ:");
+    scanf("%s",number);
+    Sort_S_number(S);  //½«±íÖĞÔ­Êı¾İ°´ÕÕÑ§ºÅ´ÓĞ¡µ½´óÅÅĞò
+    printf("Ëù²éÕÒÑ§ÉúĞÅÏ¢ÈçÏÂ:\n");
+    printf("Ñ§ÉúĞÕÃû       Ñ§Éú°à¼¶       Ñ§ÉúÑ§ºÅ       ËŞÉáºÅ       Ñ§Éúµç»°ºÅÂë\n");
+    if(strcmp(number,S[1].S_number)>=0&&strcmp(number,S[S->Total].S_number)<=0)
+    {
+        while(base<=top)
+        {
+            mid=(base+top)/2;
+            if(strcmp(number,S[mid].S_number)==0)
+            {
+                printf("%-19s%-12s %-14s%-13d%s\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
+                putchar('\n');
+                j=1;
+                break;
+            }
+            else if(strcmp(number,S[mid].S_number)>0)
+                base=mid+1;
+            else
+                top=mid-1;
+        }
+    }
+    if(!j)
+        printf("\n²éÕÒÊ§°Ü,±íÖĞ²»´æÔÚ¸ÃÑ§ÉúµÄĞÅÏ¢!\n\n");
+}
+//ÅĞ¶ÏÑ§ºÅÊÇ·ñÓë±íÖĞËù´æÑ§ºÅÖØ¸´
 void S_number_Judge(Student S,int t)
 {
     int i;
     for(i=1;i<=(S->Total)-1;i++)
         while(strcmp(S[i].S_number,S[t].S_number)==0)
         {
-            printf("å­¦å·è¾“å…¥å¤±è´¥,è¯¥å­¦å·å·²å­˜åœ¨,è¯·é‡æ–°è¾“å…¥å­¦å·!\n");
-            printf("è¯·è¾“å…¥å­¦ç”Ÿçš„å­¦å·(15ä¸ªå­—ç¬¦ä»¥å†…):");
+            printf("Ñ§ºÅÊäÈëÊ§°Ü,¸ÃÑ§ºÅÒÑ´æÔÚ,ÇëÖØĞÂÊäÈëÑ§ºÅ!\n");
+            printf("ÇëÊäÈëÑ§ÉúµÄÑ§ºÅ(15¸ö×Ö·ûÒÔÄÚ):");
             scanf("%s",S[t].S_number);
             getchar();
-            i=0;//i ç½®ä¸º0 åˆ¤æ–­ä»å¤´å¼€å§‹
+            i=0;//i ÖÃÎª0 ÅĞ¶Ï´ÓÍ·¿ªÊ¼
         }
 }
-//å­¦å·3ä½ï¼š 19ã€12ã€14ã€13
-//å­¦å·12ä½ï¼›19ã€8ã€18ã€13
+//ÅÅĞòº¯Êı°´ÕÕÇŞÊÒºÅ´ÓĞ¡µ½´óÅÅĞò(Ã°Åİ·¨)
+void Sort_D_number(Student S)
+{
+    int i,j,t;
+    char name[30];
+    char number[15];
+    char Cnumber[30];//Cnumber °à±ğ
+    for(i=1;i<=S->Total;i++)
+        for(j=i;j<=S->Total;j++)
+            if(S[i].D_number>S[j].D_number)
+            {
+                strcpy(name,S[i].S_name);
+                strcpy(number,S[i].S_number);
+                strcpy(Cnumber,S[i].S_class);
+                t=S[i].D_number;
+                strcpy(S[i].S_name,S[j].S_name);
+                strcpy(S[i].S_number,S[j].S_number);
+                strcpy(S[i].S_class,S[j].S_class);
+                S[i].D_number=S[j].D_number;
+                strcpy(S[j].S_name,name);
+                strcpy(S[j].S_number,number);
+                strcpy(S[j].S_class,Cnumber);
+                S[j].D_number=t;
+            }
+}
+//ÅÅĞòº¯Êı°´ÕÕ°à¼¶ºÅ´ÓĞ¡µ½´óÅÅĞò(Ã°Åİ·¨)
+void Sort_S_class (Student S)
+{
+    int i,j,t;
+    char name[30];
+    char number[15];
+    char  Cnumber[30];
+    for(i=1;i<=S->Total;i++)
+        for(j=i;j<=S->Total;j++)
+            if(strcmp(S[i].S_class,S[j].S_class)>0)
+            {
+                strcpy(name,S[i].S_name);
+                strcpy(number,S[i].S_number);
+                strcpy(Cnumber,S[i].S_class);
+                t=S[i]. D_number;
+                strcpy(S[i].S_name,S[j].S_name);
+                strcpy(S[i].S_number,S[j].S_number);
+                strcpy(S[i].S_class,S[j].S_class);
+                S[i]. D_number =S[j]. D_number;
+                strcpy(S[j].S_name,name);
+                strcpy(S[j].S_number,number);
+                strcpy(S[j].S_class,Cnumber);
+                S[j]. D_number =t;
+            }
+}
+//ÅÅĞòº¯Êı°´ÕÕÑ§ºÅ´ÓĞ¡µ½´óÅÅĞò(Ã°Åİ·¨)
+void Sort_S_number(Student S)
+{
+    int i,j,t;
+    char name[30];
+    char number[15];
+    char Cnumber[30];
+    for(i=1;i<=S->Total;i++)
+        for(j=i;j<=S->Total;j++)
+            if(strcmp(S[i].S_number,S[j].S_number)>0)
+            {
+                strcpy(name,S[i].S_name);
+                strcpy(number,S[i].S_number);
+                strcpy(Cnumber,S[i].S_class);
+                t=S[i].D_number;
+                strcpy(S[i].S_name,S[j].S_name);
+                strcpy(S[i].S_number,S[j].S_number);
+                strcpy(S[i].S_class,S[j].S_class);
+                S[i].D_number=S[j].D_number;
+                strcpy(S[j].S_name,name);
+                strcpy(S[j].S_number,number);
+                strcpy(S[j].S_class,Cnumber);
+                S[j].D_number=t;
+            }
+}
+//Ñ§ºÅ3Î»£º 19¡¢12¡¢14¡¢13
+//Ñ§ºÅ12Î»£»19¡¢8¡¢18¡¢13
