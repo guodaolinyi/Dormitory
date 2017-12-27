@@ -137,7 +137,7 @@ void Sort_D_number(Student S)
     int i,j,t;
     char name[30];
     char number[15];
-    char Cnumber[30];
+    char Cnumber[30];//
     for(i=1;i<=S->Total;i++)
         for(j=i;j<=S->Total;j++)
             if(S[i].D_number>S[j].D_number)
