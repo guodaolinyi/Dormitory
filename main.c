@@ -59,13 +59,13 @@ void Menu()
 //添加学生信息函数
 void Add(Student S)
 {
-    printf("请输入学生姓名(30个字符以内):");
+    printf("请输入学生姓名:");
     scanf("%s",&S[++(S->Total)].S_name);
     getchar();//获取换行符
-    printf("请输入学生班级(30个字符以内):");
+    printf("请输入学生班级:");
     scanf("%s",&S[S->Total].S_class);
     getchar();
-    printf("请输入学生的学号(15个字符以内):");
+    printf("请输入学生的学号:");
     scanf("%s",&S[S->Total].S_number);
     getchar();
     S_number_Judge(S,S->Total);//判断输入的学号是否与表中所存在的学号重复
@@ -73,7 +73,7 @@ void Add(Student S)
     scanf("%d",&S[S->Total].D_number);
     getchar();
     printf("请输入学生电话号码:");
-    scanf("%ld",&S[S->Total]. S_phone);
+    scanf("%s",&S[S->Total]. S_phone);
     getchar();
     printf("添加成功!\n\n");
 }
@@ -93,6 +93,7 @@ void Alter(Student S)
         printf("你所要修改的学生信息在表中不存在！\n");
     else
     {
+        /*
         printf("新信息如下:\n");
         printf("请输入学生班级(30个字符以内):");
         scanf("%s",S[flag].S_class);
@@ -102,11 +103,48 @@ void Alter(Student S)
         scanf("%d",&S[flag].D_number);
         getchar();
         printf("请输入学生电话号码:");
-        scanf("%ld",&S[flag]. S_phone);
+        scanf("%s",&S[flag]. S_phone);
         getchar();
         printf("修改成功!\n");
+        */
+        Alter_Sub_Menu(S,flag);
     }
     putchar('\n');
+}
+
+void Alter_Sub_Menu(Student S,int flag)
+{
+    int i;
+    printf("请选择要修改的项目!\n\n");
+    printf("1.修改班级              2.修改宿舍号\n");
+    printf("3.修改电话号码          0.取消修改\n\n");
+    scanf("%d",&i);
+    switch(i)
+    {
+        case 1:
+            printf("请输入新班级!\n");
+            scanf("%s",S[flag].S_class);
+            getchar();
+            S_number_Judge(S,flag);
+            printf("修改成功!\n");
+            break;
+        case 2:
+            printf("请输入新宿舍号!\n");
+            scanf("%d",&S[flag].D_number);
+            getchar();
+            printf("修改成功!\n");
+            break;
+        case 3:
+            printf("请输入新手机号!\n");
+            scanf("%s",&S[flag]. S_phone);
+            getchar();
+            printf("修改成功!\n");
+            break;
+        case 0:
+            break;
+        default:printf("选择错误:请在选项到之间选择!\n\n");
+            break;
+    }
 }
 //删除学生信息
 void Delete(Student S)
@@ -177,7 +215,7 @@ void Query_D_number(Student S)
             mid=(base+top)/2;
             if(i==S[mid].D_number)
             {
-                printf("%-19s%-12s %-14s%-13d%ld\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
+                printf("%-19s%-12s %-14s%-13d%s\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
                 j=1;
                 putchar('\n');
                 break;
@@ -196,7 +234,7 @@ void Query_S_class(Student S)
 {
     int i,j=0;
     char classnumber[31];
-    printf("请输入你要查找的班级号(30个字符以内):");
+    printf("请输入你要查找的班级号:");
     scanf("%s",classnumber);
     getchar();
     printf("所查找学生信息如下:\n");
@@ -210,22 +248,37 @@ void Query_S_class(Student S)
     if(!j)
         printf("\n查找失败,表中不存在该学生的信息!\n\n");
 }
-//查询函数以姓名为关键字进行查询(顺序查找)
+//查询函数以姓名为关键字进行查询(折半查找)
 void Query_S_name(Student S)
 {
-    int i,j=0;
+    int j=0,top,base,mid;
     char name[31];
-    printf("请输入你要查找的学生的姓名(30个字符以内):");
+    base=1;
+    top=S->Total;
+    printf("请输入你要查找的学生的姓名:");
     scanf("%s",name);
     getchar();
+    Sort_S_name(S);//将表中原数据按照姓名从小到大排序
     printf("所查找学生信息如下:\n");
     printf("学生姓名       学生班级       学生学号       宿舍号       学生电话号码\n");
-    for(i=1;i<=S->Total;i++)
-        if(strcmp(name,S[i].S_name)==0)
+    if(strcmp(name,S[1].S_name)>=0&&strcmp(name,S[S->Total].S_name)<=0)
+    {
+        while(base<=top)
         {
-            printf("%-19s%-12s %-14s%-13d%s\n",S[i].S_name, S[i].S_class,S[i].S_number,S[i].D_number,S[i].S_phone);
-            j=1;
+            mid=(base+top)/2;
+            if(strcmp(name,S[mid].S_name)==0)
+            {
+                printf("%-19s%-12s %-14s%-13d%s\n",S[mid].S_name, S[mid].S_class,S[mid].S_number,S[mid].D_number,S[mid].S_phone);
+                putchar('\n');
+                j=1;
+                break;
+            }
+            else if(strcmp(name,S[mid].S_name)>0)
+                base=mid+1;
+            else
+                top=mid-1;
         }
+    }
     if(!j)
         printf("\n查找失败,表中不存在该学生的信息!\n\n");
 }
@@ -271,7 +324,7 @@ void S_number_Judge(Student S,int t)
         while(strcmp(S[i].S_number,S[t].S_number)==0)
         {
             printf("学号输入失败,该学号已存在,请重新输入学号!\n");
-            printf("请输入学生的学号(15个字符以内):");
+            printf("请输入学生的学号:");
             scanf("%s",S[t].S_number);
             getchar();
             i=0;//i 置为0 判断从头开始
@@ -325,6 +378,31 @@ void Sort_S_class (Student S)
                 strcpy(S[j].S_number,number);
                 strcpy(S[j].S_class,Cnumber);
                 S[j]. D_number =t;
+            }
+}
+//排序函数按照名字从小到大排序(冒泡法)
+void Sort_S_name(Student S)
+{
+    int i,j,t;
+    char name[30];
+    char number[15];
+    char Cnumber[30];
+    for(i=1;i<=S->Total;i++)
+        for(j=i;j<=S->Total;j++)
+            if(strcmp(S[i].S_name,S[j].S_name)>0)
+            {
+                strcpy(name,S[i].S_name);
+                strcpy(number,S[i].S_number);
+                strcpy(Cnumber,S[i].S_class);
+                t=S[i].D_number;
+                strcpy(S[i].S_name,S[j].S_name);
+                strcpy(S[i].S_number,S[j].S_number);
+                strcpy(S[i].S_class,S[j].S_class);
+                S[i].D_number=S[j].D_number;
+                strcpy(S[j].S_name,name);
+                strcpy(S[j].S_number,number);
+                strcpy(S[j].S_class,Cnumber);
+                S[j].D_number=t;
             }
 }
 //排序函数按照学号从小到大排序(冒泡法)

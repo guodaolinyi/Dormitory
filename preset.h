@@ -8,7 +8,7 @@ typedef struct
     char S_class[31];  //学生班级
     char S_number[16]; //学生学号
     int D_number;      //学生所在寝室的宿舍号
-    long S_phone[20];  //学生电话号码
+    char S_phone[11];  //学生电话号码
     int Total;         //学生总数
 }Student[M],St;
 #endif
