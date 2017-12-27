@@ -239,7 +239,7 @@ void Query_S_name(Student S)
 //查询函数以学号为关键字进行查询(折半查找)
 void Query_S_number(Student S)
 {
-    int i,j,top,base,mid;
+    int j,top,base,mid;
     char number[15];
     j=0;
     base=1;
@@ -335,11 +335,26 @@ void Menu()
     printf(" 5.以学号查询学生信息                 |  \n");
     printf("********************************************************************************\n");
 }
+//加载动画
+void loading(char *p)              //延时函数的定义  
+{  
+    while (1)  
+    {  
+    if (*p!=0)  
+    printf("%c",*p++);  
+    else  
+    break;  
+    Sleep(100);               //延时控制间断语句  
+    }  
+}  
 int main(void)
 {
-    int i;
+    int i,sum;
     Student S;
     S->Total=0;
+    system("color 03");      //调节控制台的背景和字体颜色   
+    sum=0;  
+    loading("\t\t\1\1\1\1\1\1\1\1\1\1\1\1\1欢迎使用宿舍管理系统\1\1\1\1\1\1\1\1\1\1\1\1\1\n\n\n");  
     do
     {
         Menu();
