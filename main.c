@@ -6,7 +6,18 @@
 #include"preset.h"
 #include"function.h"
 #include"add.c"
-#include"add.c"
+#include"alter.c"
+#include"delete.c"
+#include"display_all.c"
+#include"menu.c"
+#include"plug.c"
+#include"query_d_number.c"
+#include"query_s_class.c"
+#include"query_s_name.c"
+#include"query_s_number.c"
+#include"sort_d_number.c"
+#include"sort_s_class.c"
+#include"sort_s_number.c"
 int main(void){
     int i,sum;
     Student S;
