@@ -6,6 +6,9 @@ void Alter(Student S);//修改学生信息函数
 void Alter_Sub_Menu(Student S, int flag);//修改信息子菜单
 void Delete(Student S);//删除学生信息
 void Display_All(Student S);//显示所有学生信息函数
+void Exit_Sub_Menu(Student S);
+void Exit_Save(Student S);
+void Initialize(Student S);
 void loading(char *p);//加载动画
 void Menu();//菜单
 void S_number_Judge(Student S, int t);//判断学号是否与表中所存学号重复
